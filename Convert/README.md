@@ -1,22 +1,41 @@
-# PDF to DOCX Converter
+# File Conversion Utilities
 
-A lightweight command-line utility written in Python that converts PDF documents into editable Microsoft Word (`.docx`) files.
+A collection of Python utility scripts for converting and manipulating document formats (PDF, DOCX, etc.).
 
-## Features
+## 📜 Scripts
 
-- **Simple CLI**: One command to convert a file.
-- **Auto-naming**: Automatically saves the output file with the same name as the input (e.g., `report.pdf` becomes `report.docx`).
-- **Layout Preservation**: Uses the `pdf2docx` library to extract text, tables, and images while maintaining the original layout.
+### 1. PDF to DOCX Converter (`convert_pdf2docx.py`)
 
-## Prerequisites
+Converts PDF documents into editable Microsoft Word (`.docx`) files.
 
-- Python 3.6 or higher
-- `pip` (Python package manager)
+- **Key Features:** Preserves layout (tables/images) and automatically names the output file.
+- **Usage:**
+  ```bash
+  python3 convert_pdf2docx.py input_file.pdf
+  ```
+  _Output: `input_file.docx`_
 
-## Installation
+### 2. OCR / Searchable PDF Generator (`ocr.py`)
 
-1. **Install the required Python library:**
+Force-flattens a PDF into images and runs OCR (Optical Character Recognition) on it to create a fresh, searchable text layer.
 
-   ```bash
-   pip install pdf2docx
-   ```
+- **Use Case:** Best for fixing PDFs where the text cannot be copied/highlighted correctly, or for digitizing scanned documents.
+- **Key Features:** Rasterizes pages to remove corrupt text layers, applies Tesseract OCR, and optimizes the final file size.
+- **Usage:**
+  ```bash
+  python3 ocr.py input_file.pdf
+  ```
+  _Output: `input_file-ocr.pdf`_
+
+---
+
+## 🛠 Installation & Requirements
+
+### System Requirements (Linux/Debian/Ubuntu)
+
+The OCR script relies on system-level tools for image processing and text recognition.
+
+```bash
+sudo apt update
+sudo apt install poppler-utils tesseract-ocr
+```
