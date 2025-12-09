@@ -1,6 +1,6 @@
 # Health Monitoring Scripts
 
-Collection of bash scripts for monitoring Linux laptop/system health, including battery status, SMART disk health, USB device status, and temperature monitoring.
+Collection of bash scripts for monitoring Linux laptop/system health, including battery status, SMART disk health, USB device status, temperature monitoring, and fan control.
 
 ## Scripts
 
@@ -292,6 +292,39 @@ Temperature: 42°C
 Power-on hours: 3,250
 Reallocated sectors: 0
 ```
+
+---
+
+### auto-fan-boost.sh
+
+Automated fan control script that boosts fan speed when CPU temperature gets too high.
+
+#### Features
+
+- **Automatic Boost**: Engaging fan boost (disengaged mode) when CPU > 85°C
+- **Smart Cooldown**: Disabling boost only when CPU < 75°C (hysteresis) to prevent rapid toggling
+- **Debug Mode**: Verbose output for troubleshooting
+
+#### Usage
+
+Run in background:
+
+```bash
+nohup ./auto-fan-boost.sh &
+```
+
+Debug mode (foreground):
+
+```bash
+./auto-fan-boost.sh --debug
+```
+
+#### Requirements
+
+- `fan-boost.sh` (helper script in same directory)
+- `sensors` (lm-sensors)
+- `thinkpad_acpi` kernel module
+- Sudo privileges (for fan control)
 
 ---
 
